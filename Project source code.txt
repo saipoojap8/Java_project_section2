@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
-// CO4: Class and Object
 class Donor {
 
     int id;
@@ -27,18 +25,10 @@ class Donor {
     }
 }
 
-
-// Main Class
 public class BloodBankSystem {
-
-    // CO1: Scanner
     static Scanner sc = new Scanner(System.in);
-
-    // CO6: ArrayList
     static ArrayList<Donor> donors = new ArrayList<>();
 
-
-    // CO3: Method
     static void addDonor() {
 
         System.out.println("\n--- Add Donor ---");
@@ -71,8 +61,6 @@ public class BloodBankSystem {
         );
     }
 
-
-    // CO3: Method
     static void displayDonors() {
 
         System.out.println("\n--- Donor List ---");
@@ -87,8 +75,6 @@ public class BloodBankSystem {
         }
     }
 
-
-    // CO3: Method
     static void searchDonor() {
 
         System.out.println("\n--- Search Donor ---");
@@ -113,8 +99,6 @@ public class BloodBankSystem {
         }
     }
 
-
-    // CO2: if-else
     static void checkBloodAvailability() {
 
         System.out.println(
@@ -142,11 +126,8 @@ public class BloodBankSystem {
         }
     }
 
-
-    // CO3: Method
     static void generateReport() {
 
-        // CO5: StringBuilder
         StringBuilder report = new StringBuilder();
 
         report.append("\n");
@@ -180,8 +161,6 @@ public class BloodBankSystem {
         System.out.println(report);
     }
 
-
-    // CO3: Method
     static void displayMenu() {
 
         System.out.println("\n==============================");
@@ -198,8 +177,6 @@ public class BloodBankSystem {
         System.out.println("==============================");
     }
 
-
-    // Main method
     public static void main(String[] args) {
 
         int choice;
