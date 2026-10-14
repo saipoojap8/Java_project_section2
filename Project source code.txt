@@ -1,0 +1,252 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+
+// CO4: Class and Object
+class Donor {
+
+    int id;
+    String name;
+    int age;
+    String bloodGroup;
+
+    Donor(int id, String name, int age, String bloodGroup) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.bloodGroup = bloodGroup;
+    }
+
+    void display() {
+        System.out.println(
+            "ID: " + id +
+            ", Name: " + name +
+            ", Age: " + age +
+            ", Blood Group: " + bloodGroup
+        );
+    }
+}
+
+
+// Main Class
+public class BloodBankSystem {
+
+    // CO1: Scanner
+    static Scanner sc = new Scanner(System.in);
+
+    // CO6: ArrayList
+    static ArrayList<Donor> donors = new ArrayList<>();
+
+
+    // CO3: Method
+    static void addDonor() {
+
+        System.out.println("\n--- Add Donor ---");
+
+        System.out.print("Enter Donor ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Donor Name: ");
+        String name = sc.nextLine();
+
+        System.out.print("Enter Age: ");
+        int age = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Enter Blood Group: ");
+        String bloodGroup = sc.nextLine().toUpperCase();
+
+        Donor d = new Donor(
+            id,
+            name,
+            age,
+            bloodGroup
+        );
+
+        donors.add(d);
+
+        System.out.println(
+            "Donor added successfully."
+        );
+    }
+
+
+    // CO3: Method
+    static void displayDonors() {
+
+        System.out.println("\n--- Donor List ---");
+
+        if (donors.size() == 0) {
+            System.out.println("No donors available.");
+        } else {
+
+            for (Donor d : donors) {
+                d.display();
+            }
+        }
+    }
+
+
+    // CO3: Method
+    static void searchDonor() {
+
+        System.out.println("\n--- Search Donor ---");
+
+        System.out.print("Enter Blood Group: ");
+        String group = sc.nextLine().toUpperCase();
+
+        boolean found = false;
+
+        for (Donor d : donors) {
+
+            if (d.bloodGroup.equals(group)) {
+                d.display();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println(
+                "No donor found for " + group
+            );
+        }
+    }
+
+
+    // CO2: if-else
+    static void checkBloodAvailability() {
+
+        System.out.println(
+            "\n--- Blood Availability ---"
+        );
+
+        System.out.print("Enter Blood Group: ");
+        String group = sc.nextLine().toUpperCase();
+
+        System.out.print("Enter Available Units: ");
+        int units = sc.nextInt();
+        sc.nextLine();
+
+        if (units > 0) {
+
+            System.out.println(
+                group + " blood is available."
+            );
+
+        } else {
+
+            System.out.println(
+                group + " blood is not available."
+            );
+        }
+    }
+
+
+    // CO3: Method
+    static void generateReport() {
+
+        // CO5: StringBuilder
+        StringBuilder report = new StringBuilder();
+
+        report.append("\n");
+        report.append("============================\n");
+        report.append("       BLOOD BANK REPORT\n");
+        report.append("============================\n");
+
+        report.append("Total Donors: ");
+        report.append(donors.size());
+        report.append("\n");
+
+        report.append("\nDonor Details:\n");
+
+        for (Donor d : donors) {
+
+            report.append("ID: ");
+            report.append(d.id);
+
+            report.append(", Name: ");
+            report.append(d.name);
+
+            report.append(", Age: ");
+            report.append(d.age);
+
+            report.append(", Blood Group: ");
+            report.append(d.bloodGroup);
+
+            report.append("\n");
+        }
+
+        System.out.println(report);
+    }
+
+
+    // CO3: Method
+    static void displayMenu() {
+
+        System.out.println("\n==============================");
+        System.out.println("     BLOOD BANK SYSTEM");
+        System.out.println("==============================");
+
+        System.out.println("1. Add Donor");
+        System.out.println("2. Display Donors");
+        System.out.println("3. Search Donor");
+        System.out.println("4. Check Blood Availability");
+        System.out.println("5. Generate Report");
+        System.out.println("0. Exit");
+
+        System.out.println("==============================");
+    }
+
+
+    // Main method
+    public static void main(String[] args) {
+
+        int choice;
+
+        do {
+
+            displayMenu();
+
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            if (choice == 1) {
+
+                addDonor();
+
+            } else if (choice == 2) {
+
+                displayDonors();
+
+            } else if (choice == 3) {
+
+                searchDonor();
+
+            } else if (choice == 4) {
+
+                checkBloodAvailability();
+
+            } else if (choice == 5) {
+
+                generateReport();
+
+            } else if (choice == 0) {
+
+                System.out.println(
+                    "Thank you for using Blood Bank System."
+                );
+
+            } else {
+
+                System.out.println(
+                    "Invalid choice."
+                );
+            }
+
+        } while (choice != 0);
+
+        sc.close();
+    }
+}
